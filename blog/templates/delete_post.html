@@ -1,0 +1,17 @@
+{% import "macros.html" as macros %}
+{% extends "base.html" %}
+{% block content %}
+    
+<h1>
+    Delete Post
+</h1>
+
+{{ macros.render_post(post) }}
+
+<div class="col-md-10" style="margin-left: 13em;">
+<form role="form" method="POST">
+    <button type="submit" class="btn btn-default">Delete Post!!</button>
+</form>
+</div>
+
+{% endblock %}
