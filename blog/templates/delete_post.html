@@ -10,9 +10,9 @@
 
 <div class="col-md-10" style="margin-left: 13em;">
 <form role="form" method="POST">
-    <button type="submit" class="btn btn-default">Delete Post!!</button>
+    <button type="submit" class="btn btn-danger">Delete Post!!</button>
+    <a href="{{ url_for('posts') }}" class="btn btn-primary" role="button">Cancel Deletion and Go Home...</a>
 </form>
-    <p><a href="{{ url_for('posts') }}">Cancel Deletion and Go Home...</a></p>
 </div>
 
 {% endblock %}

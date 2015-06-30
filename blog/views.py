@@ -104,4 +104,3 @@ def delete_post_post(id=None):
     session.delete(post)
     session.commit()
     return redirect(url_for("posts"))
-

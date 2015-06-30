@@ -4,6 +4,12 @@
 
 {% for post in posts %}
 {{ macros.render_post(post) }}
+<div class="row">
+<div class="col-md-2">&nbsp;</div>
+<div class="col-md-10">
+<p><a href="{{ url_for('edit_post', id=post.id) }}" class="btn btn-info" role="button">Edit Post</a>&nbsp;&nbsp;<a href="{{ url_for('delete_post', id=post.id) }}" class="btn btn-warning" role="button">Delete Post</a></p>
+</div>
+</div>
 {% endfor %}
 
 <ul class="pager">
@@ -18,5 +24,6 @@
     </li>
     {% endif %}
 </ul>
+
 
 {% endblock %}
