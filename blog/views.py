@@ -15,8 +15,6 @@ from .models import User
 from werkzeug.security import check_password_hash
 import mistune
 
-
-
 # @app.route("/")
 # def posts():
 #     posts = session.query(Post)
