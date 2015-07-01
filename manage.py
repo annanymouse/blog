@@ -55,4 +55,7 @@ def adduser():
     user = User(name=name, email=email,
                 password=generate_password_hash(password))
     session.add(user)
-    session.commit()
+    session.commit()  
+    
+if __name__ == "__main__":
+    manager.run()

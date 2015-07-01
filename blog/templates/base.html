@@ -35,6 +35,7 @@
 {% if current_user.is_authenticated() %}
 <li style="display: inline;"><a class="navbar-brand" href="{{ url_for('add_post_get') }}">Add Post</a></li>
 <li style="display: inline;"><a class="navbar-brand" href="{{ url_for('logout') }}">Log Out</a></li>
+<li style="display: inline;"><a class="navbar-brand" href="{{ url_for('posts') }}">Hello {{ current_user.name }}!!</a></li>
 {% else %}
 <li style="display: inline;"><a class="navbar-brand" href="{{ url_for('login_get') }}">Login</a></li>
 {% endif %}
