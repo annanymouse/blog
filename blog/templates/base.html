@@ -31,17 +31,32 @@
                         <span class="icon-bar"></span>
                     </button>
                     <ul style="list-style-type: none;">
-                        <li style="display: inline;"><a class="navbar-brand" href="{{ url_for('posts') }}">Blogful</a></li>
-                    <li style="display: inline;"><a class="navbar-brand" href="{{ url_for('add_post_get') }}">Add Post</a></li>
+<li style="display: inline;"><a class="navbar-brand" href="{{ url_for('posts') }}">Blogful</a></li>
+{% if current_user.is_authenticated() %}
+<li style="display: inline;"><a class="navbar-brand" href="{{ url_for('add_post_get') }}">Add Post</a></li>
+<li style="display: inline;"><a class="navbar-brand" href="{{ url_for('logout') }}">Log Out</a></li>
+{% else %}
+<li style="display: inline;"><a class="navbar-brand" href="{{ url_for('login_get') }}">Login</a></li>
+{% endif %}
+
                     </ul>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                     </ul>
                 </div>
+                
             </div>
         </div>
-
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="alert alert-{{ category }}">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
         <div class="container">
             {% block content %}{% endblock %}
         </div>

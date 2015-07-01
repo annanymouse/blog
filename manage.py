@@ -7,7 +7,17 @@ from blog.models import User
 
 from blog import app
 
+from flask.ext.migrate import Migrate, MigrateCommand
+from blog.database import Base
+
 manager = Manager(app)
+
+class DB(object):
+    def __init__(self, metadata):
+        self.metadata = metadata
+
+migrate = Migrate(app, DB(Base.metadata))
+manager.add_command('db', MigrateCommand)
 
 @manager.command
 def run():
@@ -33,7 +43,7 @@ def seed():
 def adduser():
     name = raw_input("Name: ")
     email = raw_input("Email: ")
-    if session.query(User).filter_by(email=email).first():
+    if session.query(User).filr_by(email=email).first():
         print "User with that email address already exists"
         return
 

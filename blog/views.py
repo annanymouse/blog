@@ -1,17 +1,21 @@
 from flask import render_template
+from flask import request, redirect, url_for
+from flask import flash
+
+from flask.ext.login import login_user
+from flask.ext.login import logout_user
+from flask.ext.login import login_required
+from flask.ext.login import current_user
 
 from blog import app
 from .database import session
 from .models import Post
-
-
-from flask import flash
-from flask.ext.login import login_user
-from werkzeug.security import check_password_hash
 from .models import User
 
+from werkzeug.security import check_password_hash
 import mistune
-from flask import request, redirect, url_for
+
+
 
 # @app.route("/")
 # def posts():
@@ -50,14 +54,17 @@ def posts(page=1, paginate_by=10):
     )
 
 @app.route("/post/add", methods=["GET"])
+@login_required
 def add_post_get():
     return render_template("add_post.html")
 
 @app.route("/post/add", methods=["POST"])
+@login_required
 def add_post_post():
     post = Post(
         title=request.form["title"],
         content=mistune.markdown(request.form["content"]),
+        author=current_user
     )
     session.add(post)
     session.commit()
@@ -79,12 +86,14 @@ def post(id = None):
 # Should display a similar form to the add_post view
 # The form should be prepopulated with the existing post data
 @app.route("/post/<int:id>/edit", methods=["GET"])
+@login_required
 def edit_post(id = None):
     post = session.query(Post)
     post = post.filter_by(id=id).first()
     return render_template("edit_post.html", post=post)
 
 @app.route("/post/<int:id>/edit", methods=["POST"])
+@login_required
 def edit_post_post(id=None):
     post = session.query(Post)
     post = post.filter_by(id=id).first()
@@ -98,12 +107,14 @@ def edit_post_post(id=None):
 # Should be accessed via a link in the metadata div
 # Should display buttons asking you to confirm or cancel the deletion
 @app.route("/post/<int:id>/delete", methods=["GET"])
+@login_required
 def delete_post(id=None):
     post = session.query(Post)
     post = post.filter_by(id=id).first()
     return render_template("delete_post.html", post=post)
 
 @app.route("/post/<int:id>/delete", methods=["POST"])
+@login_required
 def delete_post_post(id=None):
     post = session.query(Post)
     post = post.filter_by(id=id).first()
@@ -126,3 +137,9 @@ def login_post():
 
     login_user(user)
     return redirect(request.args.get('next') or url_for("posts"))
+  
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("posts"))

@@ -11,8 +11,9 @@
         <h1>
             <a href="{{ url_for('post', id=post.id) }}">{{ post.title }}</a>
         </h1>
-        {{ post.content | safe }}
-        </div>
+      <div>{{ post.content | safe }}</div>
+       <div>{{ post.author.name }}</div>  
+  </div>
 </div>
   <br />
 {% endmacro %}
