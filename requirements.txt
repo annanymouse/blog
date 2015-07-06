@@ -20,7 +20,9 @@ mercurial==2.8.2
 mistune==0.6
 psycopg2==2.6.1
 requests==2.2.1
+selenium==2.46.0
 six==1.5.2
+splinter==0.7.2
 ssh-import-id==3.21
 stevedore==0.14.1
 urllib3==1.7.1
