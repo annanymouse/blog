@@ -10,7 +10,7 @@ SQLAlchemy==1.0.6
 Werkzeug==0.10.4
 alembic==0.7.6
 argparse==1.2.1
-chardet==2.0.1
+chardet
 colorama==0.2.5
 configobj==4.7.2
 gunicorn==19.3.0
