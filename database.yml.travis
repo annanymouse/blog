@@ -1,4 +1,4 @@
 test:
   adapter: postgresql
   database: blogful-test
-  username: nitrous
+  username: postgres
