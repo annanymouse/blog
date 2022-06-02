@@ -14,7 +14,7 @@ chardet
 colorama==0.2.5
 configobj==4.7.2
 gunicorn==19.3.0
-html5lib==0.999
+html5lib==0.99999999
 itsdangerous==0.24
 mercurial==2.8.2
 mistune==0.6
