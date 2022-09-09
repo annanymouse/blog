@@ -17,7 +17,7 @@ gunicorn==19.3.0
 html5lib==0.999
 itsdangerous==0.24
 mercurial==2.8.2
-mistune==0.6
+mistune==0.8.1
 psycopg2==2.6.1
 requests==2.2.1
 selenium==2.46.0
